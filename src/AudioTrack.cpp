@@ -49,7 +49,7 @@ AudioTrack::AudioTrack(const AudioTrack& other):
     std::cout << "AudioTrack copy constructor called for: " << other.title << std::endl;
     #endif
     // Your code here...
-    for(int i = 0; i < artists.size(); i++){
+    for(int i = 0; i < other.artists.size(); i++){
         artists.push_back(other.artists.at(i));
     }
     waveform_data = new double[waveform_size];
@@ -78,7 +78,7 @@ AudioTrack& AudioTrack::operator=(const AudioTrack& other) {
     return *this;
 }
 
-AudioTrack::AudioTrack(AudioTrack&& other): title(other.title), duration_seconds(other.duration_seconds),
+AudioTrack::AudioTrack(AudioTrack&& other) noexcept : title(other.title), duration_seconds(other.duration_seconds),
     bpm(other.bpm),  waveform_size(other.waveform_size) {
     // TODO: Implement the move constructor
     #ifdef DEBUG
